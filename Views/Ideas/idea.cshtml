@@ -1,0 +1,23 @@
+@model Ideas.Models.Idea
+
+<p>@Model.User.Alias says:</p>
+<p>"@Model.Content"</p>
+
+<table>
+
+    <tr>
+        <th>Alias</th>
+        <th>Name</th>
+    </tr>
+
+<p>People who liked this post:</p>
+@foreach(var u in ViewBag.Likers)
+{
+    <tr>
+        <td><a href="/user/@u.User.Id">@u.User.Alias</a></td>
+        <td>@u.User.FirstName @u.User.LastName</td>
+    </tr>
+}
+
+
+</table>

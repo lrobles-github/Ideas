@@ -1,0 +1,17 @@
+@model Ideas.Models.Idea
+
+@foreach(var i in ViewBag.AllIdeas)
+{
+    <br>
+    <br>
+    <br>
+    <p>"@i.Content"</p>
+    <br>
+    <p>By <a href="/user/@i.User.Id" >@i.User.Alias</a></p>
+    <br>
+    <p><a href="/idea/@i.Id">@i.Likes.Count people</a> liked this</p>
+    <a href="like/@i.Id">Like</a>
+
+}
+
+

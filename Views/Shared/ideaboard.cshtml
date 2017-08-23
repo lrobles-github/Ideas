@@ -1,0 +1,21 @@
+@model Ideas.Models.Idea
+
+<h3 class="display1">Hi, @ViewBag.DisplayName</h3>
+<br>
+<br>
+
+<form asp-controller="Ideas" asp-action="post" method="POST">
+    <div class="form-group row">
+        <label for="idea" class="col-2 col-form-label"></label>
+        <div class="col-10">
+            <input class="form-control" type="text" value="Post something here..." name="idea">
+        </div>
+    </div>
+        <button type="submit" value="Idea!" class="btn btn-primary">Submit</button>
+</form>
+
+
+<div>
+    @Html.Partial("_IdeasPartial")
+</div>
+
