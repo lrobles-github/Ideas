@@ -21,10 +21,11 @@ namespace Ideas.Controllers
 
         [HttpGet]
         [Route("")]
+        [Route("index")]
         public IActionResult Index()
         {
             ViewBag.errors = new List<string>();
-            return View("index");
+            return View();
         }
 
 
