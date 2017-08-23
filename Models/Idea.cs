@@ -15,6 +15,7 @@ namespace Ideas.Models
 
         public List<Like> Likes { get; set; }
 
+        public int UserId { get; set; }
         public User User { get; set; }
 
         public Idea()

@@ -117,19 +117,27 @@ namespace Ideas.Controllers
         {
             if (HttpContext.Session.GetInt32("LoggedIn") == 1)
             {
-                
-                Idea IdeaChecker = _context.Ideas.SingleOrDefault(x => x.Id == id);
-                User UserChecker = _context.Users.SingleOrDefault(x => x.Id == id);
 
-                var LikeChecker = _context.Likes.Where(u => u.User == UserChecker).Where(p => p.Idea == IdeaChecker);
+                User UserChecker = _context.Users.SingleOrDefault(x => x.Id == HttpContext.Session.GetInt32("UserId"));
 
-                System.Console.WriteLine(LikeChecker);
+                List<Like> LikeChecker = _context.Likes.Where(x => x.IdeaId == id).ToList();
 
-                if (LikeChecker == null)
+                bool flag = false; 
+
+                foreach(var l in LikeChecker)
+                {
+                    if (l.UserId == UserChecker.Id)
+                    {
+                        flag = true;
+                    }
+
+                }
+
+                if (flag == false)
                 {
                     Like NewLike = new Like {
-                        Idea = IdeaChecker,
-                        User = _context.Users.SingleOrDefault(x => x.Id == HttpContext.Session.GetInt32("UserId")),
+                        IdeaId = id,
+                        UserId = (int)UserChecker.Id,
                         CreatedAt = DateTime.Now
                     };
         

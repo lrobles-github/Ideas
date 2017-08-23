@@ -55,12 +55,14 @@ namespace Ideas.Controllers
 
             else if (ModelState.IsValid && AliasChecker == null)
             {
-                User newUser = new User {FirstName = user.FirstName, LastName = user.LastName, Alias = user.Alias, Password = user.Password, CreatedAt = DateTime.Now};
+                User newUser = new User {FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, Alias = user.Alias, Password = user.Password, CreatedAt = DateTime.Now};
                 _context.Users.Add(newUser);
                 _context.SaveChanges();
                 
+                User UserChecker = _context.Users.SingleOrDefault(x => x.Email == newUser.Email);
+
                 HttpContext.Session.SetInt32("LoggedIn", 1);
-                HttpContext.Session.SetInt32("UserId", user.Id);
+                HttpContext.Session.SetInt32("UserId", UserChecker.Id);
                 
                 System.Console.WriteLine("############ Redirecting to idea board...");
                 return RedirectToAction("ideaboard", "Ideas");
