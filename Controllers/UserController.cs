@@ -22,7 +22,7 @@ namespace Ideas.Controllers
         [HttpGet]
         [Route("")]
         [Route("index")]
-        public IActionResult Index()
+        public IActionResult index()
         {
             ViewBag.errors = new List<string>();
             return View();
@@ -68,7 +68,7 @@ namespace Ideas.Controllers
                 return RedirectToAction("ideaboard", "Ideas");
             }
 
-            return View();
+            return View("register");
 
         }
 

@@ -12,6 +12,7 @@ namespace Ideas.Controllers
     public class IdeasController : Controller
     {
 
+
         private IdeasContext _context;
  
         public IdeasController(IdeasContext context)
